@@ -15,12 +15,16 @@ class TestSampleMeasurements(unittest.TestCase):
             Measurement(datetime(2017, 1, 3, 10, 5, 1), MeasType.SPO2, 95.08),
         ]
         
-        expected_output = [
-            Measurement(datetime(2017, 1, 3, 10, 5, 0), MeasType.TEMP, 35.79),
-            Measurement(datetime(2017, 1, 3, 10, 10, 0), MeasType.TEMP, 35.01),
-            Measurement(datetime(2017, 1, 3, 10, 5, 0), MeasType.SPO2, 97.17),
-            Measurement(datetime(2017, 1, 3, 10, 10, 0), MeasType.SPO2, 95.08),
-        ]
+        expected_output = {
+            MeasType.TEMP: [
+                Measurement(datetime(2017, 1, 3, 10, 5, 0), MeasType.TEMP, 35.79),
+                Measurement(datetime(2017, 1, 3, 10, 10, 0), MeasType.TEMP, 35.01),
+            ],
+            MeasType.SPO2: [
+                Measurement(datetime(2017, 1, 3, 10, 5, 0), MeasType.SPO2, 97.17),
+                Measurement(datetime(2017, 1, 3, 10, 10, 0), MeasType.SPO2, 95.08),
+            ],
+        }
         
         result = sample_measurements(datetime(2017, 1, 3, 10, 0, 0), unsampled_measurements)
         
