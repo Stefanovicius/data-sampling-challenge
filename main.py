@@ -15,8 +15,11 @@ class Measurement:
     value: float
 
 def sample_measurements(
-    unsampled_measurements: list[Measurement]
+    unsampled_measurements: list[Measurement],
 ) -> list[Measurement]:
+    
+    if not unsampled_measurements:
+        return []
 
     sorted_measurements = sorted(unsampled_measurements, key = lambda x: x.measurement_time, reverse = True)
     sampled_measurements = {}
@@ -35,6 +38,9 @@ def sample_measurements(
             measurement_type = measurement.measurement_type
 
             if measurement_time > current_interval:
+                continue
+            
+            if measurement_time < current_interval - timedelta(minutes = 5):
                 continue
             
             if measurement_type in sampled_measurements[current_interval]:
