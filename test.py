@@ -1,6 +1,7 @@
 import unittest
 from datetime import datetime
-from main import sample_measurements, MeasurementType, Measurement
+from data_types import Measurement, MeasurementType
+from main import sample_measurements
 
 class TestSampleMeasurements(unittest.TestCase):
     
